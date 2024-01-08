@@ -45,12 +45,12 @@ class CartManager implements ICartManager
         $this->cart->save();
     }
 
-    public function add($productId, $variantId = null)
+    public function add($productId, $variantId = null, $quantity = 1)
     {
         $item = CartItem::make();
         $item->product_id = $productId;
         $item->cart_id = $this->getCart()->id;
-        $item->quantity = 1;
+        $item->quantity = $quantity;
 
         if($variantId)
             $item->variant_id = $variantId;

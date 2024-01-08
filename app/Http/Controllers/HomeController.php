@@ -14,7 +14,6 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         $cart = app(CartManager::class);
-        $cart->add(1);
 
         return view('home', [
             'posts' => Post::where('is_featured', true)->latest()->take(3)->get(),

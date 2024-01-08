@@ -12,6 +12,7 @@ class Product extends Component
 {
     public ProductModel $product;
     public int $finalVariantId;
+
     #[On('finalVariantSelected')]
     public function handleFinalVariant($id)
     {
