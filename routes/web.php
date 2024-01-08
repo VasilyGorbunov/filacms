@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
+Route::get('/cart', \App\Http\Controllers\CartController::class)->name('cart');
 Route::get('/article/{post:slug}', \App\Http\Controllers\PostController::class)->name('post.show');
 Route::get('/products/{product:slug}', \App\Http\Controllers\ProductShowController::class)->name('product.show');
 Route::get('/categories/{category:slug}', \App\Http\Controllers\CategoryController::class)->name('category.show');

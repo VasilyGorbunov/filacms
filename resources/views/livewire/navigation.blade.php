@@ -108,6 +108,7 @@
                             </x-dropdown>
                         </div>
                     @endif
+                    <a href="{{ route('cart') }}">Checkout</a>
 
                     <!-- Settings Dropdown -->
                     <div class="ms-3 relative">
@@ -168,7 +169,11 @@
                     </div>
                 </div>
             @endauth
-
+            @guest
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <a href="{{ route('cart') }}">Checkout</a>
+                </div>
+            @endguest
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
