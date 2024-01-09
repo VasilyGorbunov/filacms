@@ -14,14 +14,19 @@
                             @foreach($cart->getCart()->items as $item)
                                 <li class="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                                     <div class="shrink-0">
-                                        <img class="w-24 h-24 max-w-full rounded-lg object-cover" src="" alt="">
+                                        <img class="w-24 h-24 max-w-full rounded-lg object-cover"
+                                             src="{{ $item->variant->getFirstMediaUrl() }}">
                                     </div>
 
                                     <div class="relative flex flex-1 flex-col justify-between">
                                         <div class="sm:grid sm:col-gap-5 sm:grid-cols-2">
                                             <div class="pr-8 sm:pr-5">
                                                 <p class="text-base font-semibold text-gray-900">{{ $item->product->title }}</p>
-                                                <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">1234</p>
+                                                <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">
+                                                    @foreach($item->variant->ancestorsAndSelf as $ancestor)
+                                                        {{ $ancestor->title }}@if(!$loop->last) | @endif
+                                                    @endforeach
+                                                </p>
                                             </div>
 
                                             <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
@@ -62,9 +67,17 @@
 
                     <div class="mt-6 text-center">
                         <button type="button"
-                                class="group inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-6 py-4 text-white"
-                        >
+                                class="group inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
                             Checkout
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="group-hover:ml-8 ml-4 h-6 w-6 transition-all"
+                                 fill="none"
+                                 viewBox="0 0 24 24"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
                         </button>
                     </div>
 

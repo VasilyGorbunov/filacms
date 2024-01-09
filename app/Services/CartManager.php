@@ -58,6 +58,11 @@ class CartManager implements ICartManager
         $item->save();
     }
 
+    public function getItemsCount(): int
+    {
+        return $this->getCart()->items()->count();
+    }
+
     public function remove()
     {
 

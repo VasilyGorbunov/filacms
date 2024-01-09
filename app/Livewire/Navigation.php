@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Services\CartManager;
 use Livewire\Component;
 use App\Models\Navigation as NavigationModel;
 
@@ -20,6 +21,8 @@ class Navigation extends Component
 
     public function render()
     {
-        return view('livewire.navigation');
+        return view('livewire.navigation', [
+            'cart' => app(CartManager::class),
+        ]);
     }
 }
