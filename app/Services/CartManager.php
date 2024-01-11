@@ -47,6 +47,18 @@ class CartManager implements ICartManager
 
     public function add($productId, $variantId = null, $quantity = 1)
     {
+
+        $item = CartItem::whereCartId($this->getCart()->id)
+            ->whereProductId($productId)
+            ->whereVariantId($variantId)
+            ->first();
+
+        if ($item) {
+            $item->quantity += $quantity;
+            $item->save();
+            return;
+        }
+
         $item = CartItem::make();
         $item->product_id = $productId;
         $item->cart_id = $this->getCart()->id;
