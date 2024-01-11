@@ -25,4 +25,20 @@ class Stock extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function decreaseStock(int $quantity): bool
+    {
+        if ($this->quantity < $quantity) {
+            return false;
+        }
+
+        $this->decrement('quantity', $quantity);
+        return true;
+    }
+
+    public function increaseStock(int $quantity): bool
+    {
+        $this->increment('quantity', $quantity);
+        return true;
+    }
 }

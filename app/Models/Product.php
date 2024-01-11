@@ -32,4 +32,9 @@ class Product extends Model implements HasMedia
     {
         return $this->hasMany(ProductVariation::class);
     }
+
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
+    }
 }

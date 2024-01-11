@@ -67,6 +67,9 @@ class CartManager implements ICartManager
         if($variantId)
             $item->variant_id = $variantId;
 
+        if ($item->product)
+            $item->product->stock->decreaseStock($quantity);
+
         $item->save();
     }
 

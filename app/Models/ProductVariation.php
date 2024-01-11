@@ -10,7 +10,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class ProductVariation extends Model implements HasMedia
 {
-    use HasFactory;
     use InteractsWithMedia;
     use HasRecursiveRelationships;
 
@@ -33,5 +32,10 @@ class ProductVariation extends Model implements HasMedia
     public function parent()
     {
         return $this->belongsTo(ProductVariation::class, 'parent_id');
+    }
+
+    public function stock()
+    {
+        return $this->hasOne(Stock::class, 'variant_id');
     }
 }
