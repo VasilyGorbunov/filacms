@@ -7,6 +7,7 @@ use App\Filament\Resources\NavigationResource;
 use App\Filament\Resources\OrderResource;
 use App\Filament\Resources\PostResource;
 use App\Filament\Resources\ProductResource;
+use App\Filament\Resources\StockResource;
 use App\Filament\Resources\UserResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -59,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
                         ->url(fn (): string => Dashboard::getUrl()),
                 ])->groups([
                     NavigationGroup::make('Shop')->items([
+                        ...StockResource::getNavigationItems(),
                         ...ProductResource::getNavigationItems(),
                         ...OrderResource::getNavigationItems(),
                     ]),
